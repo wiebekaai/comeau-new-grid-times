@@ -12,6 +12,7 @@ import MainStory from '../MainStory';
 import SecondaryStory from '../SecondaryStory';
 import OpinionStory from '../OpinionStory';
 import Advertisement from '../Advertisement';
+import { QUERIES } from '../../constants';
 
 const MainStoryGrid = () => {
   return (
@@ -55,8 +56,51 @@ const Wrapper = styled.div`
     'secondary-stories'
     'opinion-stories'
     'advertisement';
-  gap: 48px;
+  gap: 48px 32px;
   margin-bottom: 48px;
+
+  --border: 1px solid var(--color-gray-300);
+  --spacing: 16px;
+
+  @media ${QUERIES.tabletAndUp} {
+    gap: 48px 0;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas:
+      'main-story secondary-stories'
+      'opinion-stories opinion-stories'
+      'advertisement advertisement'
+    ;
+
+    > *:first-of-type {
+      border-right: var(--border);
+      padding-right: var(--spacing);
+      margin-right: var(--spacing);
+    }
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    grid-template-columns: 4fr 3fr 2fr;
+    grid-template-areas:
+      'main-story secondary-stories opinion-stories'
+      'main-story advertisement advertisement'
+    ;
+    gap: 0;
+
+    > *:nth-of-type(2) {
+      border-right: var(--border);
+      padding-right: var(--spacing);
+    }
+
+    > *:nth-of-type(3) {
+      padding-left: var(--spacing);
+    }
+
+    > *:last-of-type {
+      border-top: var(--border);
+      padding-top: var(--spacing);
+      margin-top: var(--spacing);
+    }
+  }
 `;
 
 const MainStorySection = styled.section`
