@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { QUERIES } from '../../constants';
 
 const MainStory = ({
   id,
@@ -41,9 +42,20 @@ const Heading = styled.h2`
 `;
 
 const Abstract = styled.p`
+  --max-lines: 9;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines);
+  overflow: hidden;
+  
   font-size: 1rem;
   margin-bottom: 1em;
   white-space: pre-wrap;
+
+  @media ${QUERIES.tabletOnly} {
+    --max-lines: 16;
+  }
 `;
 
 const Location = styled.span`
