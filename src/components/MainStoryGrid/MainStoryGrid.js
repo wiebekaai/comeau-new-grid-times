@@ -33,13 +33,13 @@ const MainStoryGrid = () => {
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
-            <StoryListItem key={story.id}>
+            <OpinionStoryListItem key={story.id}>
               <OpinionStory {...story} />
-            </StoryListItem>
+            </OpinionStoryListItem>
           ))}
-        </StoryList>
+        </OpinionStoryList>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -116,17 +116,38 @@ const StoryList = styled.div`
   flex-direction: column;
 `;
 
+const OpinionStoryList = styled(StoryList)`
+  @media ${QUERIES.tabletOnly} {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 32px;
+  }
+`;
+
 const StoryListItem = styled.div`
---spacing: 16px;
+  --spacing: 16px;
 
-&:not(:last-of-type) {
-  border-bottom: 1px solid var(--color-gray-300);
-  padding-bottom: var(--spacing);
-}
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--color-gray-300);
+    padding-bottom: var(--spacing);
+  }
 
-&:not(:first-of-type) {
-  padding-top: var(--spacing);
-}
+  &:not(:first-of-type) {
+    padding-top: var(--spacing);
+  }
+`;
+
+const OpinionStoryListItem = styled(StoryListItem)`
+  @media ${QUERIES.tabletOnly} {
+    &:not(:last-of-type) {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    &:not(:first-of-type) {
+      padding-top: 0;
+    }
+  }
 `;
 
 const OpinionSection = styled.section`
